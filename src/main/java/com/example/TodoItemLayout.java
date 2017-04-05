@@ -9,7 +9,7 @@ public class TodoItemLayout extends HorizontalLayout {
     private final CheckBox done;
     private final TextField text;
 
-    public TodoItemLayout(Todo todo) {
+    public TodoItemLayout(Todo todo, TodoChangeListener changeListener) {
         done = new CheckBox();
         text = new TextField();
         text.addStyleName(ValoTheme.TEXTFIELD_BORDERLESS);
@@ -21,5 +21,8 @@ public class TodoItemLayout extends HorizontalLayout {
         Binder<Todo> binder = new Binder<>(Todo.class);
         binder.bindInstanceFields(this);
         binder.setBean(todo);
+        addComponent(done);
+        addComponentsAndExpand(text);
+        binder.addValueChangeListener(event -> changeListener.todoChanged(todo));
     }
 }

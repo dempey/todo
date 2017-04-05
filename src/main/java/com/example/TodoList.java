@@ -32,7 +32,7 @@ public class TodoList extends VerticalLayout  implements TodoChangeListener{
         removeAllComponents();
 
         todos.forEach(todo -> {
-            addComponent(new TodoItemLayout(todo));
+            addComponent(new TodoItemLayout(todo, this));
         });
     }
 
